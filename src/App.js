@@ -24,11 +24,11 @@ export default function App() {
             <Route path='/board'>
               <Board />
             </Route>
-            <Route path='/'>
-              <Home />
-            </Route>
             <Route path='/edit'>
               <Edit />
+            </Route>
+            <Route path='/'>
+              <Home />
             </Route>
           </Switch>
         </div>
@@ -38,13 +38,13 @@ export default function App() {
 }
 
 function Home() {
-  return <h2>Home</h2>;
+  return <h2>Homemade Jeopardy!</h2>;
 }
 
 function Board() {
-  return <h2>Board</h2>;
+  return <h2>Custom Game</h2>;
 }
 
 function Edit() {
-  return <h2>Edit</h2>;
+  return <h2>Edit Game</h2>;
 }

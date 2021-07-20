@@ -1,12 +1,8 @@
-import './Board.css';
+import './board.css';
 
 function Board() {
   return (
-    <div className="Board">
-      <header className="Board-header">
-        
-      </header>
-    </div>
+    <div></div>
   );
 }
 

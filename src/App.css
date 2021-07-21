@@ -1,18 +1,29 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-header {
-  background-color: #ff00e1;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/*Navigation Bar*/
+.app-navigation-bar {
+  display: inline;
 }
 
-.App-link {
-  color: #61dafb;
+/*Navigation Bar List Component*/
+.app-navigation-bar-ul {
+  display: inline-block;
+  text-align: center;
+  padding: 0;
 }
+
+/*Navigation Bar List Item*/
+.app-navigation-bar-li {
+  display: inline-block;
+  margin: 1em;
+  list-style-type: none;
+}
+
+/*Links in Navigation Bar*/
+.app-navigation-bar-li a {
+  list-style-type: none;
+  text-decoration: none; 
+}
+

@@ -3,7 +3,9 @@ import './edit.css';
 
 function Edit() {
   return (
-    <div></div>
+    <div>
+      <h1>Edit Game</h1>
+    </div>
   );
 }
 

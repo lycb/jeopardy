@@ -5,6 +5,9 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import Home from './pages/home/home';
+import Board from './pages/board/board';
+import Edit from './pages/edit/edit';
 import './App.css';
 
 export default function App() {
@@ -36,16 +39,4 @@ export default function App() {
       </Router>
     </div>
   );
-}
-
-function Home() {
-  return <h2>Homemade Jeopardy!</h2>;
-}
-
-function Board() {
-  return <h2>Custom Game</h2>;
-}
-
-function Edit() {
-  return <h2>Edit Game</h2>;
 }

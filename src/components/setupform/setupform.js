@@ -4,7 +4,7 @@ export default class SetUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numTeams: '1',
+      numTeams: '0',
       scoreUnit: 'money'
     };
 
@@ -53,12 +53,71 @@ export default class SetUpForm extends Component {
         <label>
           Number of Teams:
           <select name='numTeams' value={this.state.numTeams} onChange={this.handleChange}>
+            <option value="0">Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
           </select>
         </label>
+
+        <div className="team-name-wrapper">
+          {
+            this.state.numTeams === "1" ? (
+              <div className="team-team-boxes">
+                <label>
+                  Team 1 Name:
+                  <input type="text" name="team1Name" />
+                </label>
+              </div>
+            ) : this.state.numTeams === "2" ? (
+              <div className="team-team-boxes">
+                <label>
+                  Team 1 Name:
+                  <input type="text" name="team1Name" />
+                </label>
+                <label>
+                  Team 2 Name:
+                  <input type="text" name="team2Name" />
+                </label>
+              </div>
+            ) : this.state.numTeams === "3" ? (
+              <div className="team-team-boxes">
+                <label>
+                  Team 1 Name:
+                  <input type="text" name="team1Name" />
+                </label>
+                <label>
+                  Team 2 Name:
+                  <input type="text" name="team2Name" />
+                </label>
+                <label>
+                  Team 3 Name:
+                  <input type="text" name="team3Name" />
+                </label>
+              </div>
+             ) : this.state.numTeams === "4" ? (
+              <div className="team-team-boxes">
+                <label>
+                  Team 1 Name:
+                  <input type="text" name="team1Name" />
+                </label>
+                <label>
+                  Team 2 Name:
+                  <input type="text" name="team2Name" />
+                </label>
+                <label>
+                  Team 3 Name:
+                  <input type="text" name="team3Name" />
+                </label>
+                <label>
+                  Team 4 Name:
+                  <input type="text" name="team4Name" />
+                </label>
+              </div>
+            ) : null
+          }
+        </div>
         </div>
 
          <div className='form-select-component-wrapper'>

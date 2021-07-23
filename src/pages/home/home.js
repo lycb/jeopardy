@@ -6,7 +6,10 @@ function Home() {
   return (
     <div>
     <h1>Jeopardy</h1>
-      <SetUpForm />
+    <img src="pepedancing.gif" alt="this slowpoke moves"  width="250" />
+    <img src="pepedancing.gif" alt="this slowpoke moves"  width="250" />
+    <img src="pepedancing.gif" alt="this slowpoke moves"  width="250" />
+    <SetUpForm />
     </div>
   );
 }

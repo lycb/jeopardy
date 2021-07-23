@@ -23,7 +23,6 @@ export default function App() {
               <li className='app-navigation-bar-li'><Link to='/edit'>Edit</Link></li>
             </ul>
           </nav>
-
           <Switch>
             <Route path='/board'>
               <Board />

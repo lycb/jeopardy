@@ -5,7 +5,7 @@ function Board() {
   return (
     <div>
       <h1>Board</h1>
-      <iframe src="coffin.mp3" allow="autoplay" id="iframeAudio" className="mp3Player"></iframe> 
+      <iframe src="coffin.mp3" title="coffin music" allow="autoplay;loop" id="iframeAudio" className="mp3Player"></iframe> 
       <div className="board-wrapper">
         <table className="board-table">
           <tr>

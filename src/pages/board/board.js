@@ -5,10 +5,7 @@ function Board() {
   return (
     <div>
       <h1>Board</h1>
-      <audio controls autoplay>
-        <iframe src="coffin.mp3" allow="autoplay" id="iframeAudio"></iframe> 
-      Your browser does not support the audio element.
-      </audio>
+      <iframe src="coffin.mp3" allow="autoplay" id="iframeAudio" className="mp3Player"></iframe> 
     </div>
   );
 }

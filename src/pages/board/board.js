@@ -6,7 +6,7 @@ function Board() {
   return (
     <div>
       <h1>Board</h1>
-      <iframe className="musicPlayer" src="https://www.youtube.com/embed/j9V78UbdzWI?loop=1&playlist=j9V78UbdzWI&autoplay=1" title="Coffin Dance Song"></iframe>
+      <iframe src="https://open.spotify.com/embed/playlist/6Vhr7sjnlyomFN6WRTNZJt" width="250" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       <GameBoard />
     </div>
   );

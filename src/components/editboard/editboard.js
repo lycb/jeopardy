@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './editboard.css'
+import {board_obj} from '../../board_object.js'
+
 
 export default class EditBoard extends Component {
   constructor(props) {

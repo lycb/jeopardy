@@ -6,6 +6,9 @@ export let board_obj =
       // Category 1 board [0]
       [
          {
+            "category_name": "name"
+         },
+         {
             "point": 100,
             "question": "question",
             "answer": "answer"
@@ -38,6 +41,9 @@ export let board_obj =
       ],
       // Category 2 board [1]
       [
+         {
+            "category_name": "name"
+         },
          {
             "point": 100,
             "question": "question",
@@ -72,6 +78,9 @@ export let board_obj =
       // Category 3 board [2]
       [
          {
+            "category_name": "name"
+         },
+         {
             "point": 100,
             "question": "question",
             "answer": "answer"
@@ -104,6 +113,9 @@ export let board_obj =
       ],
       // Category 4 board [3]
       [
+         {
+            "category_name": "name"
+         },
          {
             "point": 100,
             "question": "question",
@@ -138,6 +150,9 @@ export let board_obj =
       // Category 5 board [4]
       [
          {
+            "category_name": "name"
+         },
+         {
             "point": 100,
             "question": "question",
             "answer": "answer"
@@ -170,6 +185,9 @@ export let board_obj =
       ],
       // Category 6 board [5]
       [
+         {
+            "category_name": "name"
+         },
          {
             "point": 100,
             "question": "question",

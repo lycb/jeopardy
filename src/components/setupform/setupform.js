@@ -4,15 +4,17 @@ export default class SetUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numTeams: '0',
-      scoreUnit: 'money'
+      "numTeams": '0',
+      "scoreUnit": 'money',
+      "teams": []
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeProperty = this.handleChangeProperty.bind(this);
+    this.handleChangeArray = this.handleChangeArray.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChangeProperty(event) {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -22,37 +24,40 @@ export default class SetUpForm extends Component {
     });
   }
 
+  handleChangeArray(index) {
+    // const target = event.target;
+    // const value = target.value;
+
+    // this.setState({
+    //   teams: [ ...this.state.teams, value ]
+    // });
+
+    // return this.state.teams;
+
+    return event => {
+      let teams = [...this.state.teams];
+      let team = {...teams[index]};
+      team = event.target.value;
+      teams[index] = team;
+      this.setState({teams});
+    };
+  }
+
   handleSubmit(event) {
     event.preventDefault();    
-    let formData = new FormData(event.target);
-    let object = {};
-    for (var [key, value] of formData.entries()) { 
-      object[key] = value;
-    }
-    let json = JSON.stringify(object);
+    let json = JSON.stringify(this.state);
   }
-
-  // TODO: move this to the question form in the edit page so that user can download
-  downloadJSON(json) {
-    json = [json];
-    const element = document.createElement("a");
-    const file = new Blob(json, { type: "text/plain;charset=utf-8" });
-    element.href = URL.createObjectURL(file);
-    element.download = "jeopardy_file.json";
-    element.click();
-  }
-
+  
   handleUpload(file) {
     // use JSON.parse(JSON string)
   }
-
   render() {
     return (
       <form id='setUpForm' name='setUpForm' onSubmit={this.handleSubmit}>
         <div className='form-select-component-wrapper'>
         <label>
           Number of Teams:
-          <select name='numTeams' value={this.state.numTeams} onChange={this.handleChange}>
+          <select name='numTeams' value={this.state.numTeams} onChange={this.handleChangeProperty}>
             <option value="0">Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -67,52 +72,52 @@ export default class SetUpForm extends Component {
               <div className="team-team-boxes">
                 <label>
                   Team 1 Name:
-                  <input type="text" name="team1Name" />
+                  <input type="text" name="team1" onChange={this.handleChangeArray(0)} />
                 </label>
               </div>
             ) : this.state.numTeams === "2" ? (
               <div className="team-team-boxes">
                 <label>
                   Team 1 Name:
-                  <input type="text" name="team1Name" />
+                  <input type="text" name="team1" onChange={this.handleChangeArray(0)} />
                 </label>
                 <label>
                   Team 2 Name:
-                  <input type="text" name="team2Name" />
+                  <input type="text" name="team2" onChange={this.handleChangeArray(1)} />
                 </label>
               </div>
             ) : this.state.numTeams === "3" ? (
               <div className="team-team-boxes">
                 <label>
                   Team 1 Name:
-                  <input type="text" name="team1Name" />
+                  <input type="text" name="team1" onChange={this.handleChangeArray(0)} />
                 </label>
                 <label>
                   Team 2 Name:
-                  <input type="text" name="team2Name" />
+                  <input type="text" name="team2" onChange={this.handleChangeArray(1)} />
                 </label>
                 <label>
                   Team 3 Name:
-                  <input type="text" name="team3Name" />
+                  <input type="text" name="team3" onChange={this.handleChangeArray(2)} />
                 </label>
               </div>
              ) : this.state.numTeams === "4" ? (
               <div className="team-team-boxes">
                 <label>
                   Team 1 Name:
-                  <input type="text" name="team1Name" />
+                  <input type="text" name="team1" onChange={this.handleChangeArray(0)} />
                 </label>
                 <label>
                   Team 2 Name:
-                  <input type="text" name="team2Name" />
+                  <input type="text" name="team2" onChange={this.handleChangeArray(1)} />
                 </label>
                 <label>
                   Team 3 Name:
-                  <input type="text" name="team3Name" />
+                  <input type="text" name="team3" onChange={this.handleChangeArray(2)} />
                 </label>
                 <label>
                   Team 4 Name:
-                  <input type="text" name="team4Name" />
+                  <input type="text" name="team4" onChange={this.handleChangeArray(3)} />
                 </label>
               </div>
             ) : null
@@ -123,7 +128,7 @@ export default class SetUpForm extends Component {
          <div className='form-select-component-wrapper'>
         <label>
           Score Unit:
-          <select name='scoreUnit' value={this.state.scoreUnit} onChange={this.handleChange}>
+          <select name='scoreUnit' value={this.state.scoreUnit} onChange={this.handleChangeProperty}>
             <option value="money">$$$</option>
             <option value="points">Points</option>
           </select>

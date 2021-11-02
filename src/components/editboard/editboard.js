@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './editboard.css'
 import {board_obj} from '../../board_object.js'
 
-
 export default class EditBoard extends Component {
   constructor(props) {
     super(props);
@@ -241,8 +240,18 @@ export default class EditBoard extends Component {
   displayQuestion(category, row) {
   }
 
-  // TODO https://github.com/lycb/jeopardy/issues/2
-  handleSubmit() {
+  // Download board as JSON file
+  handleSubmit(e) {
+    e.preventDefault()
+    const board = this.props.board
+    const a = document.createElement('a');
+    const file = new Blob([JSON.stringify(board)], { type: 'application/json;charset=utf-8'});
+    a.href = URL.createObjectURL(file);
+    a.download = 'jeopardy.json';
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click()
+    document.body.removeChild(a)
   }
 
   //  https://stackoverflow.com/questions/52235160/how-to-setstate-multiple-states/52235312
@@ -257,161 +266,43 @@ export default class EditBoard extends Component {
   }
 
   render() {
+    const board = this.state.board
+
     return (
       <div className="board-wrapper">
         <form className="edit-form" onSubmit={this.handleSubmit}>
+          {/**
+           * Loop over the board array - each "category" is one of the inner nested arrays
+          */}
+          {board.map((category, categoryIndex) => (
           <div className="category">
-            <h2>Category 1</h2>
+              <h2>Category {category[0].id}</h2>
             <div className="form-section">
-              <label htmlFor="category1_name">
+                <label htmlFor={"category" + category[0].id + "_name"}>
               Category Name:
-                <input type="text" id="category1_name" onChange={this.handleChange(0, 0, "category_name")} value={this.state.board[0][0].category_name} />
+                  <input type="text" id={"category" + category[0].id + "_name"} onChange={this.handleChange(categoryIndex, 0, "category_name")} value={category[0].category_name} />
               </label>
             </div>            
 
+              {/**
+               * Loop over an array containing the 5 different question values to build the question-answer inputs
+               * pointsIndex+1 accounts for the missing category_name item when you compare this points array to the original board category array
+              */}
+              {["100", "200", "300", "400", "500"].map((points, pointsIndex) => (
             <div className="form-section">
               <label>
-              100 Points Question:
-                <input type="text" onChange={this.handleChange(0, 1, "question")} value={this.state.board[0][1].question} />
+                    {points + " Points Question:"}
+                    <input type="text" onChange={this.handleChange(categoryIndex, pointsIndex+1, "question")} value={category[pointsIndex+1].question} />
               </label>
               <label>
-              100 Points Answer:
-                <input type="text" onChange={this.handleChange(0, 1, "answer")} value={this.state.board[0][1].answer} />
+                    {points + " Points Answer:"}
+                    <input type="text" onChange={this.handleChange(categoryIndex, pointsIndex+1, "answer")} value={category[pointsIndex+1].answer} />
               </label>
             </div>
-
-            <div className="form-section">
-              <label>
-              200 Points Question:
-                <input type="text" onChange={this.handleChange(0, 2, "question")} value={this.state.board[0][2].question} />
-              </label>
-              <label>
-              200 Points Answer:
-                <input type="text" onChange={this.handleChange(0, 2, "answer")} value={this.state.board[0][2].answer} />
-              </label>
+              ))}
             </div>
-
-            <div className="form-section">
-              <label>
-              300 Points Question:
-                <input type="text" onChange={this.handleChange(0, 3, "question")} value={this.state.board[0][3].question} />
-              </label>
-              <label>
-              300 Points Answer:
-                <input type="text" onChange={this.handleChange(0, 3, "answer")} value={this.state.board[0][3].answer} />
-              </label>
-            </div>
-
-            <div className="form-section">
-              <label>
-              400 Points Question:
-                <input type="text" onChange={this.handleChange(0, 4, "question")} value={this.state.board[0][4].question} />
-              </label>
-              <label>
-              400 Points Answer:
-                <input type="text" onChange={this.handleChange(0, 4, "answer")} value={this.state.board[0][4].answer} />
-              </label>
-            </div>
-
-            <div className="form-section">
-              <label>
-              500 Points Question:
-                <input type="text" onChange={this.handleChange(0, 5, "question")} value={this.state.board[0][5].question} />
-              </label>
-              <label>
-              500 Points Answer:
-                <input type="text" onChange={this.handleChange(0, 5, "answer")} value={this.state.board[0][5].answer} />
-              </label>
-            </div>
-
-            <div className="form-section">
-              <label>
-              600 Points Question:
-                <input type="text" onChange={this.handleChange(0, 6, "question")} value={this.state.board[0][6].question} />
-              </label>
-              <label>
-              600 Points Answer:
-                <input type="text" onChange={this.handleChange(0, 6, "answer")} value={this.state.board[0][6].answer} />
-              </label>
-            </div>
-          </div>
-
-          <div className="category">
-            <h2>Category 2</h2>
-            <div className="form-section">
-              <label htmlFor="category1_name">
-              Category Name:
-                <input type="text" id="category1_name" onChange={this.handleChange(1, 0, "category_name")} value={this.state.board[1][0].category_name} />
-              </label>
-            </div>            
-
-            <div className="form-section">
-              <label>
-              100 Points Question:
-                <input type="text" onChange={this.handleChange(1, 1, "question")} value={this.state.board[1][1].question} />
-              </label>
-              <label>
-              100 Points Answer:
-                <input type="text" onChange={this.handleChange(1, 1, "answer")} value={this.state.board[1][1].answer} />
-              </label>
-            </div>
-
-            <div className="form-section">
-              <label>
-              200 Points Question:
-                <input type="text" onChange={this.handleChange(1, 2, "question")} value={this.state.board[1][2].question} />
-              </label>
-              <label>
-              200 Points Answer:
-                <input type="text" onChange={this.handleChange(1, 2, "answer")} value={this.state.board[1][2].answer} />
-              </label>
-            </div>
-
-            <div className="form-section">
-              <label>
-              300 Points Question:
-                <input type="text" onChange={this.handleChange(1, 3, "question")} value={this.state.board[1][3].question} />
-              </label>
-              <label>
-              300 Points Answer:
-                <input type="text" onChange={this.handleChange(1, 3, "answer")} value={this.state.board[1][3].answer} />
-              </label>
-            </div>
-
-            <div className="form-section">
-              <label>
-              400 Points Question:
-                <input type="text" onChange={this.handleChange(1, 4, "question")} value={this.state.board[1][4].question} />
-              </label>
-              <label>
-              400 Points Answer:
-                <input type="text" onChange={this.handleChange(1, 4, "answer")} value={this.state.board[1][4].answer} />
-              </label>
-            </div>
-
-            <div className="form-section">
-              <label>
-              500 Points Question:
-                <input type="text" onChange={this.handleChange(1, 5, "question")} value={this.state.board[1][5].question} />
-              </label>
-              <label>
-              500 Points Answer:
-                <input type="text" onChange={this.handleChange(1, 5, "answer")} value={this.state.board[1][5].answer} />
-              </label>
-            </div>
-
-            <div className="form-section">
-              <label>
-              600 Points Question:
-                <input type="text" onChange={this.handleChange(1, 6, "question")} value={this.state.board[1][6].question} />
-              </label>
-              <label>
-              600 Points Answer:
-                <input type="text" onChange={this.handleChange(1, 6, "answer")} value={this.state.board[1][6].answer} />
-              </label>
-            </div>
-          </div>
-          <input type="submit"/>
+          ))}
+          <button type="submit">Download Board</button>
         </form>
       </div>
     )};

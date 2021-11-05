@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import EditBoard from '../../components/editboard/editboard';
 import './edit.css';
 
-function Edit() {
-  return (
-    <div>
-      <h1>Edit Game</h1>
-      <div className="board-wrapper">
-        <EditBoard />
-      </div>
-    </div>
-  );
-}
+export default class Edit extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default Edit;
+  render() {
+    const board = this.props.board;
+
+    return (
+      <div>
+        <h1>Edit Game</h1>
+        <div className="board-wrapper">
+          <EditBoard
+            board={board}
+            onBoardChange={this.props.onBoardChange} />
+        </div>
+      </div>
+    );
+  }
+}

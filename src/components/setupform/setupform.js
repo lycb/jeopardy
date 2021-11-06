@@ -2,11 +2,13 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 
 export default function SetUpForm(props) {
+  // props
   const scoreUnit = props.scoreUnit;
   const teams = props.teams;
   const numTeams = props.numTeams;
-  const history = useHistory();
 
+  // history hook
+  const history = useHistory();
 
   const handleScoreUnitChange = (event) => {
     props.onScoreUnitChange(event)
@@ -23,6 +25,22 @@ export default function SetUpForm(props) {
   const handlePlay = (event) => {
     event.preventDefault();
     history.push('/board');
+  }
+
+  const onFileSelect = (event) => {
+    let file = event.target.files[0];
+
+    if (file.type !== "application/json") {
+      alert("Please upload a JSON file");
+      event.target.value = null
+    }
+
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      const JSONtext = (e.target.result)
+      const board = JSON.parse(JSONtext);
+    }
+    fileReader.readAsText(file)
   }
     
   return (
@@ -60,6 +78,7 @@ export default function SetUpForm(props) {
         </select>
       </label>
       </div>
+      <input  className="file-upload-input" type="file" id="file-input" onChange={onFileSelect} />
       <button onClick={handlePlay}>Play</button>
     </div>
   );

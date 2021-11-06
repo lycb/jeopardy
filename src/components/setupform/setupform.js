@@ -3,31 +3,23 @@ import React, { Component } from 'react';
 export default class SetUpForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      "numTeams": this.props.teams.length
-    };
 
     this.handleScoreUnitChange = this.handleScoreUnitChange.bind(this);
     this.handleTeamsChange = this.handleTeamsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handlePropertyChange = this.handlePropertyChange.bind(this);
+    this.handleNumTeamsChange = this.handleNumTeamsChange.bind(this);
   }
 
   handleScoreUnitChange(event) {
-    this.props.handleScoreUnitChange(event)
+    this.props.onScoreUnitChange(event)
   }
 
   handleTeamsChange(index) {
     return this.props.onTeamsChange(index)
   }
 
-  handlePropertyChange(event) {
-    this.setState(prevState => {
-      const target = event.target;
-      const value = target.value;
-      const name = target.name;
-      return { [name]: value }
-    });
+  handleNumTeamsChange(event) {
+    this.props.onNumTeamsChange(event)
   }
 
   handleSubmit(event) {
@@ -41,14 +33,14 @@ export default class SetUpForm extends Component {
   render() {
     const scoreUnit = this.props.scoreUnit;
     const teams = this.props.teams;
-    const numTeams = this.state.numTeams;
+    const numTeams = this.props.numTeams;
 
     return (
       <form id='setUpForm' name='setUpForm' onSubmit={this.handleSubmit}>
         <div className='form-select-component-wrapper'>
           <label>
             Number of Teams:
-            <select name='numTeams' value={numTeams} onChange={this.handlePropertyChange}>
+            <select name='numTeams' value={numTeams} onChange={this.handleNumTeamsChange}>
               <option value="0">Select</option>
               <option value="1">1</option>
               <option value="2">2</option>

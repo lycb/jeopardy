@@ -16,6 +16,7 @@ export default class App extends Component {
 
     this.state = {
       "scoreUnit": 'money',
+      "numTeams": "0",
       "teams": [],
       "board": [
         // Category 1 board [0]
@@ -244,15 +245,31 @@ export default class App extends Component {
     };
 
     this.handleScoreUnitChange = this.handleScoreUnitChange.bind(this);
+    this.handleNumTeamsChange = this.handleNumTeamsChange.bind(this);
     this.handleTeamsChange = this.handleTeamsChange.bind(this);
     this.handleBoardChange = this.handleBoardChange.bind(this);
   }
 
   handleScoreUnitChange(event) {
     this.setState(prevState => {
-      let numTeams = event.value;
-      return { numTeams };
+      let scoreUnit = event.target.value;
+      return { scoreUnit };
     });
+  }
+
+  handleNumTeamsChange(event) {
+    this.setState(prevState => {
+      const numTeams = event.target.value;
+      if (numTeams > prevState.numTeams) {
+        const teams = prevState.teams
+        teams.push("")
+        return { numTeams, teams }
+      } else if (numTeams < prevState.numTeams) {
+        let teams = prevState.teams
+        teams = teams.slice(0, numTeams)
+        return { numTeams, teams }
+      }
+    })
   }
 
   handleTeamsChange(index) {
@@ -280,6 +297,7 @@ export default class App extends Component {
 
   render() {
     const scoreUnit = this.state.scoreUnit;
+    const numTeams = this.state.numTeams;
     const teams = this.state.teams;
     const board = this.state.board;
 
@@ -310,8 +328,10 @@ export default class App extends Component {
               <Route path='/'>
                 <Home
                   scoreUnit={scoreUnit}
+                  numTeams={numTeams}
                   teams={teams}
                   onScoreUnitChange={this.handleScoreUnitChange}
+                  onNumTeamsChange={this.handleNumTeamsChange}
                   onTeamsChange={this.handleTeamsChange} />
               </Route>
             </Switch>

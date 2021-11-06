@@ -3,10 +3,6 @@ import SetUpForm from '../../components/setupform/setupform';
 import './home.css';
 
 export default class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const scoreUnit = this.props.scoreUnit;
     const numTeams = this.props.numTeams;

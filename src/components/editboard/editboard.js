@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './editboard.css'
-import {board_obj} from '../../board_object.js'
 
 export default class EditBoard extends Component {
   constructor(props) {
@@ -42,7 +41,7 @@ export default class EditBoard extends Component {
            * Loop over the board array - each "category" is one of the inner nested arrays
           */}
           {board.map((category, categoryIndex) => (
-            <div className="category">
+            <div className="category" key={categoryIndex}>
               <h2>Category {category[0].id}</h2>
               <div className="form-section">
                 <label htmlFor={"category" + category[0].id + "_name"}>
@@ -56,7 +55,7 @@ export default class EditBoard extends Component {
                * pointsIndex+1 accounts for the missing category_name item when you compare this points array to the original board category array
               */}
               {["100", "200", "300", "400", "500", "600"].map((points, pointsIndex) => (
-                <div className="form-section">
+                <div className="form-section" key={pointsIndex}>
                   <label>
                     {points + " Points Question:"}
                     <input type="text" onChange={this.handleChange(categoryIndex, pointsIndex+1, "question")} value={category[pointsIndex+1].question} />

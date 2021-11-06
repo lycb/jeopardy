@@ -3,10 +3,6 @@ import EditBoard from '../../components/editboard/editboard';
 import './edit.css';
 
 export default class Edit extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const board = this.props.board;
 

@@ -4,7 +4,7 @@ export default class SetUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      "numTeams": this.props.teams.length.toString()
+      "numTeams": this.props.teams.length
     };
 
     this.handleScoreUnitChange = this.handleScoreUnitChange.bind(this);
@@ -40,79 +40,33 @@ export default class SetUpForm extends Component {
   }
   render() {
     const scoreUnit = this.props.scoreUnit;
+    const teams = this.props.teams;
     const numTeams = this.state.numTeams;
 
     return (
       <form id='setUpForm' name='setUpForm' onSubmit={this.handleSubmit}>
         <div className='form-select-component-wrapper'>
-        <label>
-          Number of Teams:
-          <select name='numTeams' value={numTeams} onChange={this.handlePropertyChange}>
-            <option value="0">Select</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </label>
+          <label>
+            Number of Teams:
+            <select name='numTeams' value={numTeams} onChange={this.handlePropertyChange}>
+              <option value="0">Select</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </label>
 
-        <div className="team-name-wrapper">
-          {
-            numTeams === "1" ? (
-              <div className="team-team-boxes">
+          <div className="team-name-wrapper">
+            <div className="team-team-boxes">
+              {[...Array(parseInt(numTeams))].map((value, teamIndex) => (
                 <label>
-                  Team 1 Name:
-                  <input type="text" name="team1" onChange={this.handleTeamsChange(0)} />
+                  Team {teamIndex+1} Name:
+                  <input type="text" name={"team" + teamIndex+1} onChange={this.handleTeamsChange(teamIndex)} value={teams[teamIndex] ? teams[teamIndex] : ""} />
                 </label>
-              </div>
-            ) : numTeams === "2" ? (
-              <div className="team-team-boxes">
-                <label>
-                  Team 1 Name:
-                  <input type="text" name="team1" onChange={this.handleTeamsChange(0)} />
-                </label>
-                <label>
-                  Team 2 Name:
-                  <input type="text" name="team2" onChange={this.handleTeamsChange(1)} />
-                </label>
-              </div>
-            ) : numTeams === "3" ? (
-              <div className="team-team-boxes">
-                <label>
-                  Team 1 Name:
-                  <input type="text" name="team1" onChange={this.handleTeamsChange(0)} />
-                </label>
-                <label>
-                  Team 2 Name:
-                  <input type="text" name="team2" onChange={this.handleTeamsChange(1)} />
-                </label>
-                <label>
-                  Team 3 Name:
-                  <input type="text" name="team3" onChange={this.handleTeamsChange(2)} />
-                </label>
-              </div>
-             ) : numTeams === "4" ? (
-              <div className="team-team-boxes">
-                <label>
-                  Team 1 Name:
-                  <input type="text" name="team1" onChange={this.handleTeamsChange(0)} />
-                </label>
-                <label>
-                  Team 2 Name:
-                  <input type="text" name="team2" onChange={this.handleTeamsChange(1)} />
-                </label>
-                <label>
-                  Team 3 Name:
-                  <input type="text" name="team3" onChange={this.handleTeamsChange(2)} />
-                </label>
-                <label>
-                  Team 4 Name:
-                  <input type="text" name="team4" onChange={this.handleTeamsChange(3)} />
-                </label>
-              </div>
-            ) : null
-          }
-        </div>
+              ))}
+            </div>
+          </div>
         </div>
 
          <div className='form-select-component-wrapper'>

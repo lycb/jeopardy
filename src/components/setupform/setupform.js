@@ -3,132 +3,68 @@ import React, { Component } from 'react';
 export default class SetUpForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      "numTeams": '0',
-      "scoreUnit": 'money',
-      "teams": []
-    };
 
-    this.handleChangeProperty = this.handleChangeProperty.bind(this);
-    this.handleChangeArray = this.handleChangeArray.bind(this);
+    this.handleScoreUnitChange = this.handleScoreUnitChange.bind(this);
+    this.handleTeamsChange = this.handleTeamsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNumTeamsChange = this.handleNumTeamsChange.bind(this);
   }
 
-  handleChangeProperty(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
+  handleScoreUnitChange(event) {
+    this.props.onScoreUnitChange(event)
   }
 
-  handleChangeArray(index) {
-    // const target = event.target;
-    // const value = target.value;
+  handleTeamsChange(index) {
+    return this.props.onTeamsChange(index)
+  }
 
-    // this.setState({
-    //   teams: [ ...this.state.teams, value ]
-    // });
-
-    // return this.state.teams;
-
-    return event => {
-      let teams = [...this.state.teams];
-      let team = {...teams[index]};
-      team = event.target.value;
-      teams[index] = team;
-      this.setState({teams});
-    };
+  handleNumTeamsChange(event) {
+    this.props.onNumTeamsChange(event)
   }
 
   handleSubmit(event) {
-    event.preventDefault();    
+    event.preventDefault();
     let json = JSON.stringify(this.state);
   }
-  
+
   handleUpload(file) {
     // use JSON.parse(JSON string)
   }
   render() {
+    const scoreUnit = this.props.scoreUnit;
+    const teams = this.props.teams;
+    const numTeams = this.props.numTeams;
+
     return (
       <form id='setUpForm' name='setUpForm' onSubmit={this.handleSubmit}>
         <div className='form-select-component-wrapper'>
-        <label>
-          Number of Teams:
-          <select name='numTeams' value={this.state.numTeams} onChange={this.handleChangeProperty}>
-            <option value="0">Select</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </label>
+          <label>
+            Number of Teams:
+            <select name='numTeams' value={numTeams} onChange={this.handleNumTeamsChange}>
+              <option value="0">Select</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </label>
 
-        <div className="team-name-wrapper">
-          {
-            this.state.numTeams === "1" ? (
-              <div className="team-team-boxes">
+          <div className="team-name-wrapper">
+            <div className="team-team-boxes">
+              {[...Array(parseInt(numTeams))].map((value, teamIndex) => (
                 <label>
-                  Team 1 Name:
-                  <input type="text" name="team1" onChange={this.handleChangeArray(0)} />
+                  Team {teamIndex+1} Name:
+                  <input type="text" name={"team" + teamIndex+1} onChange={this.handleTeamsChange(teamIndex)} value={teams[teamIndex] ? teams[teamIndex] : ""} />
                 </label>
-              </div>
-            ) : this.state.numTeams === "2" ? (
-              <div className="team-team-boxes">
-                <label>
-                  Team 1 Name:
-                  <input type="text" name="team1" onChange={this.handleChangeArray(0)} />
-                </label>
-                <label>
-                  Team 2 Name:
-                  <input type="text" name="team2" onChange={this.handleChangeArray(1)} />
-                </label>
-              </div>
-            ) : this.state.numTeams === "3" ? (
-              <div className="team-team-boxes">
-                <label>
-                  Team 1 Name:
-                  <input type="text" name="team1" onChange={this.handleChangeArray(0)} />
-                </label>
-                <label>
-                  Team 2 Name:
-                  <input type="text" name="team2" onChange={this.handleChangeArray(1)} />
-                </label>
-                <label>
-                  Team 3 Name:
-                  <input type="text" name="team3" onChange={this.handleChangeArray(2)} />
-                </label>
-              </div>
-             ) : this.state.numTeams === "4" ? (
-              <div className="team-team-boxes">
-                <label>
-                  Team 1 Name:
-                  <input type="text" name="team1" onChange={this.handleChangeArray(0)} />
-                </label>
-                <label>
-                  Team 2 Name:
-                  <input type="text" name="team2" onChange={this.handleChangeArray(1)} />
-                </label>
-                <label>
-                  Team 3 Name:
-                  <input type="text" name="team3" onChange={this.handleChangeArray(2)} />
-                </label>
-                <label>
-                  Team 4 Name:
-                  <input type="text" name="team4" onChange={this.handleChangeArray(3)} />
-                </label>
-              </div>
-            ) : null
-          }
-        </div>
+              ))}
+            </div>
+          </div>
         </div>
 
          <div className='form-select-component-wrapper'>
         <label>
           Score Unit:
-          <select name='scoreUnit' value={this.state.scoreUnit} onChange={this.handleChangeProperty}>
+          <select name='scoreUnit' value={scoreUnit} onChange={this.handleScoreUnitChange}>
             <option value="money">$$$</option>
             <option value="points">Points</option>
           </select>

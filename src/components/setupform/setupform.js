@@ -1,77 +1,85 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useHistory } from "react-router-dom";
 
-export default class SetUpForm extends Component {
-  constructor(props) {
-    super(props);
+export default function SetUpForm(props) {
+  // props
+  const scoreUnit = props.scoreUnit;
+  const teams = props.teams;
+  const numTeams = props.numTeams;
 
-    this.handleScoreUnitChange = this.handleScoreUnitChange.bind(this);
-    this.handleTeamsChange = this.handleTeamsChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNumTeamsChange = this.handleNumTeamsChange.bind(this);
+  // history hook
+  const history = useHistory();
+
+  const handleScoreUnitChange = (event) => {
+    props.onScoreUnitChange(event)
   }
 
-  handleScoreUnitChange(event) {
-    this.props.onScoreUnitChange(event)
+  const handleTeamsChange = (index) => {
+    return props.onTeamsChange(index)
   }
 
-  handleTeamsChange(index) {
-    return this.props.onTeamsChange(index)
+  const handleNumTeamsChange = (event) => {
+    props.onNumTeamsChange(event)
   }
 
-  handleNumTeamsChange(event) {
-    this.props.onNumTeamsChange(event)
-  }
-
-  handleSubmit(event) {
+  const handlePlay = (event) => {
     event.preventDefault();
-    let json = JSON.stringify(this.state);
+    history.push('/board');
   }
 
-  handleUpload(file) {
-    // use JSON.parse(JSON string)
+  const onFileSelect = (event) => {
+    let file = event.target.files[0];
+
+    if (file.type !== "application/json") {
+      alert("Please upload a JSON file");
+      event.target.value = null
+    }
+
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      const JSONtext = (e.target.result)
+      const board = JSON.parse(JSONtext);
+    }
+    fileReader.readAsText(file)
   }
-  render() {
-    const scoreUnit = this.props.scoreUnit;
-    const teams = this.props.teams;
-    const numTeams = this.props.numTeams;
-
-    return (
-      <form id='setUpForm' name='setUpForm' onSubmit={this.handleSubmit}>
-        <div className='form-select-component-wrapper'>
-          <label>
-            Number of Teams:
-            <select name='numTeams' value={numTeams} onChange={this.handleNumTeamsChange}>
-              <option value="0">Select</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </label>
-
-          <div className="team-name-wrapper">
-            <div className="team-team-boxes">
-              {[...Array(parseInt(numTeams))].map((value, teamIndex) => (
-                <label>
-                  Team {teamIndex+1} Name:
-                  <input type="text" name={"team" + teamIndex+1} onChange={this.handleTeamsChange(teamIndex)} value={teams[teamIndex] ? teams[teamIndex] : ""} />
-                </label>
-              ))}
-            </div>
-          </div>
-        </div>
-
-         <div className='form-select-component-wrapper'>
+    
+  return (
+    <div>
+      <div className='form-select-component-wrapper'>
         <label>
-          Score Unit:
-          <select name='scoreUnit' value={scoreUnit} onChange={this.handleScoreUnitChange}>
-            <option value="money">$$$</option>
-            <option value="points">Points</option>
+          Number of Teams:
+          <select name='numTeams' value={numTeams} onChange={handleNumTeamsChange}>
+            <option value="0">Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
           </select>
         </label>
+
+        <div className="team-name-wrapper">
+          <div className="team-team-boxes">
+            {[...Array(parseInt(numTeams, 10))].map((value, teamIndex) => (
+              <label key={teamIndex}>
+                Team {teamIndex+1} Name:
+                <input type="text" name={"team" + teamIndex+1} onChange={handleTeamsChange(teamIndex)} value={teams[teamIndex] ? teams[teamIndex] : ""}/>
+              </label>
+            ))}
+          </div>
         </div>
-        <button type="submit">Play</button>
-      </form>
-    );
-  }
+      </div>
+
+       <div className='form-select-component-wrapper'>
+      <label>
+        Score Unit:
+        <select name='scoreUnit' value={scoreUnit} onChange={handleScoreUnitChange}>
+          <option value="money">$$$</option>
+          <option value="points">Points</option>
+        </select>
+      </label>
+      </div>
+      <input  className="file-upload-input" type="file" id="file-input" onChange={onFileSelect} />
+      <button onClick={handlePlay}>Play</button>
+    </div>
+  );
 }

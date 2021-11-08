@@ -20,6 +20,7 @@ export default class Home extends Component {
         teams={teams}
         onScoreUnitChange={this.props.onScoreUnitChange}
         onNumTeamsChange={this.props.onNumTeamsChange}
+        onBoardUpload={this.props.onBoardUpload}
         onTeamsChange={this.props.onTeamsChange} />
       </div>
     );

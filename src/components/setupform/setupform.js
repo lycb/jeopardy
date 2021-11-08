@@ -32,15 +32,18 @@ export default function SetUpForm(props) {
 
     if (file.type !== "application/json") {
       alert("Please upload a JSON file");
-      event.target.value = null
+      event.target.value = null;
     }
 
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
-      const JSONtext = (e.target.result)
+      const JSONtext = (e.target.result);
       const board = JSON.parse(JSONtext);
+
+      props.onBoardUpload(board);
+
     }
-    fileReader.readAsText(file)
+    fileReader.readAsText(file);
   }
     
   return (

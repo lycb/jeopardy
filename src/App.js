@@ -247,7 +247,8 @@ export default class App extends Component {
     this.handleScoreUnitChange = this.handleScoreUnitChange.bind(this);
     this.handleNumTeamsChange = this.handleNumTeamsChange.bind(this);
     this.handleTeamsChange = this.handleTeamsChange.bind(this);
-    this.handleBoardChange = this.handleBoardChange.bind(this);
+    this.handleBoardChangeEdit = this.handleBoardChangeEdit.bind(this);
+    this.handleBoardChangeUpload = this.handleBoardChangeUpload.bind(this);
   }
 
   handleScoreUnitChange(event) {
@@ -285,7 +286,7 @@ export default class App extends Component {
   }
 
   //  https://stackoverflow.com/questions/52235160/how-to-setstate-multiple-states/52235312
-  handleBoardChange(category, index, name) {
+  handleBoardChangeEdit(category, index, name) {
     return event => {
       this.setState(prevState => {
         const board = [...prevState.board];
@@ -293,6 +294,10 @@ export default class App extends Component {
         return { board };
       })
     };
+  }
+
+  handleBoardChangeUpload(newBoard) {
+    this.setState({ board: newBoard });
   }
 
   render() {
@@ -323,7 +328,7 @@ export default class App extends Component {
               <Route path='/edit'>
                 <Edit
                   board={board}
-                  onBoardChange={this.handleBoardChange} />
+                  onBoardChange={this.handleBoardChangeEdit} />
               </Route>
               <Route path='/'>
                 <Home
@@ -332,6 +337,7 @@ export default class App extends Component {
                   teams={teams}
                   onScoreUnitChange={this.handleScoreUnitChange}
                   onNumTeamsChange={this.handleNumTeamsChange}
+                  onBoardUpload={this.handleBoardChangeUpload}
                   onTeamsChange={this.handleTeamsChange} />
               </Route>
             </Switch>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
+import './setupform.css'
 
 export default function SetUpForm(props) {
   // props
@@ -81,8 +82,12 @@ export default function SetUpForm(props) {
         </select>
       </label>
       </div>
-      <input  className="file-upload-input" type="file" id="file-input" onChange={onFileSelect} />
-      <button onClick={handlePlay}>Play</button>
+      <div className="file-upload-wrapper">
+        <input  className="file-upload-input" type="file" id="file-input" onChange={onFileSelect} />
+      </div>
+      <div className="play-button-wrapper">
+        <img className="play-button" src='playbutton.png' onClick={(event) => handlePlay(event)} />
+      </div>
     </div>
   );
 }

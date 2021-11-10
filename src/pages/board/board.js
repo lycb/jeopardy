@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GameBoard from '../../components/gameboard/gameboard';
+import ScoreBoard from '../../components/scoreboard/scoreboard';
 import './board.css';
 
 export default class Board extends Component {

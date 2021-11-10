@@ -9,7 +9,7 @@ export default class GameBoard extends Component {
   }
 
   handleOnClick(e, question, category, index) {
-    return this.props.onAnswered(category, index);
+    // return this.props.onAnswered(category, index);
   }
   render() {
     const board = this.props.board;

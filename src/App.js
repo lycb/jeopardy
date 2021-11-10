@@ -15,7 +15,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      "scoreUnit": 'money',
+      "scoreUnit": '$',
       "numTeams": "0",
       "teams": [],
       "board": [
@@ -28,32 +28,38 @@ export default class App extends Component {
           {
             "point": 100,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 200,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 300,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 400,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 500,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 600,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           }
         ],
         // Category 2 board [1]
@@ -65,32 +71,38 @@ export default class App extends Component {
           {
             "point": 100,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 200,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 300,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 400,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 500,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 600,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           }
         ],
         // Category 3 board [2]
@@ -102,32 +114,38 @@ export default class App extends Component {
           {
             "point": 100,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 200,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 300,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 400,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 500,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 600,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           }
         ],
         // Category 4 board [3]
@@ -139,32 +157,38 @@ export default class App extends Component {
           {
             "point": 100,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 200,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 300,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 400,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 500,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 600,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           }
         ],
         // Category 5 board [4]
@@ -176,32 +200,38 @@ export default class App extends Component {
           {
             "point": 100,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 200,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 300,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 400,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 500,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 600,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           }
         ],
         // Category 6 board [5]
@@ -213,32 +243,38 @@ export default class App extends Component {
           {
             "point": 100,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 200,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 300,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 400,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 500,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           },
           {
             "point": 600,
             "question": "",
-            "answer": ""
+            "answer": "",
+            "resolved": false
           }
         ],
       ],
@@ -249,6 +285,7 @@ export default class App extends Component {
     this.handleTeamsChange = this.handleTeamsChange.bind(this);
     this.handleBoardChangeEdit = this.handleBoardChangeEdit.bind(this);
     this.handleBoardChangeUpload = this.handleBoardChangeUpload.bind(this);
+    this.markQuestionResolved = this.markQuestionResolved.bind(this);
   }
 
   handleScoreUnitChange(event) {
@@ -265,7 +302,7 @@ export default class App extends Component {
         const teams = prevState.teams
         for (let i = 0; i < numTeams; i++) {
           teams.push({
-            "teamName": "",
+            "name": "",
             "points": 0
           })
         }
@@ -282,18 +319,27 @@ export default class App extends Component {
     return event => {
       this.setState(prevState => {
         const teams = [...prevState.teams];
-        teams[index] = { ...teams[index], "teamName": event.target.value }
+        teams[index] = { ...teams[index], "name": event.target.value };
         return { teams };
       });
     }
   }
 
-  //  https://stackoverflow.com/questions/52235160/how-to-setstate-multiple-states/52235312
   handleBoardChangeEdit(category, index, name) {
     return event => {
       this.setState(prevState => {
         const board = [...prevState.board];
-        board[category][index] = { ...board[category][index], [name]: event.target.value }
+        board[category][index] = { ...board[category][index], [name]: event.target.value };
+        return { board };
+      })
+    };
+  }
+
+  markQuestionResolved(category, index) {
+    return event => {
+      this.setState(prevState => {
+        const board = [...prevState.board];
+        board[category][index] = { ...board[category][index], "resolved": true };
         return { board };
       })
     };
@@ -326,7 +372,8 @@ export default class App extends Component {
                 <Board
                   scoreUnit={scoreUnit}
                   teams={teams}
-                  board={board} />
+                  board={board} 
+                  markQuestionResolved={this.markQuestionResolved}/>
               </Route>
               <Route path='/edit'>
                 <Edit

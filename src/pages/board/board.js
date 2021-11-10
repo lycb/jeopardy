@@ -16,6 +16,11 @@ export default class Board extends Component {
         <GameBoard
           scoreUnit={scoreUnit}
           teams={teams}
+          board={board} 
+          markQuestionResolved={this.props.markQuestionResolved}/>
+        <ScoreBoard
+          scoreUnit={scoreUnit}
+          teams={teams}
           board={board} />
       </div>
     );

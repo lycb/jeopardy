@@ -261,11 +261,16 @@ export default class App extends Component {
   handleNumTeamsChange(event) {
     this.setState(prevState => {
       const numTeams = event.target.value;
-      if (numTeams > prevState.numTeams) {
+      if (numTeams > prevState.teams.length) {
         const teams = prevState.teams
-        teams.push("")
+        for (let i = 0; i < numTeams; i++) {
+          teams.push({
+            "teamName": "",
+            "points": 0
+          })
+        }
         return { numTeams, teams }
-      } else if (numTeams < prevState.numTeams) {
+      } else if (numTeams < prevState.teams.length) {
         let teams = prevState.teams
         teams = teams.slice(0, numTeams)
         return { numTeams, teams }
@@ -276,10 +281,8 @@ export default class App extends Component {
   handleTeamsChange(index) {
     return event => {
       this.setState(prevState => {
-        let teams = prevState.teams;
-        let team = teams[index];
-        team = event.target.value;
-        teams[index] = team;
+        const teams = [...prevState.teams];
+        teams[index] = { ...teams[index], "teamName": event.target.value }
         return { teams };
       });
     }

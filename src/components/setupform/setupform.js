@@ -66,7 +66,7 @@ export default function SetUpForm(props) {
             {[...Array(parseInt(numTeams, 10))].map((value, teamIndex) => (
               <label key={teamIndex}>
                 Team {teamIndex+1} Name:
-                <input type="text" name={"team" + teamIndex+1} onChange={handleTeamsChange(teamIndex)} value={teams[teamIndex] ? teams[teamIndex] : ""}/>
+                <input type="text" name={"team" + teamIndex+1} onChange={handleTeamsChange(teamIndex)} value={teams[teamIndex].teamName ? teams[teamIndex].teamName : ""}/>
               </label>
             ))}
           </div>

@@ -11,7 +11,7 @@ export default class Board extends Component {
     return (
       <div>
         <h1>Board</h1>
-        <iframe width="400" height="100" src="https://www.youtube.com/embed/videoseries?list=PLql_LE4BdRHebM1tp0-XnsIQxVrpSnrTe&autoplay=1&loop=1" allow="autoplay" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="400" height="100" src="https://www.youtube.com/embed/videoseries?list=PLql_LE4BdRHebM1tp0-XnsIQxVrpSnrTe&autoplay=1&loop=1&mute=1" allow="autoplay" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         <GameBoard
           scoreUnit={scoreUnit}
           teams={teams}

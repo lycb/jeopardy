@@ -11,7 +11,7 @@ export default class Board extends Component {
     return (
       <div>
         <h1>Board</h1>
-        <iframe title="Spotify" src="https://open.spotify.com/embed/playlist/6Vhr7sjnlyomFN6WRTNZJt" width="250" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <iframe width="400" height="100" src="https://www.youtube.com/embed/videoseries?list=PLql_LE4BdRHebM1tp0-XnsIQxVrpSnrTe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <GameBoard
           scoreUnit={scoreUnit}
           teams={teams}

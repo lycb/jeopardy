@@ -336,13 +336,12 @@ export default class App extends Component {
   }
 
   markQuestionResolved(category, index) {
-    return event => {
-      this.setState(prevState => {
-        const board = [...prevState.board];
-        board[category][index] = { ...board[category][index], "resolved": true };
-        return { board };
-      })
-    };
+    console.log("category: " + category + " index:  " + index)
+    this.setState(prevState => {
+      const board = [...prevState.board];
+      board[category][index] = { ...board[category][index], "resolved": true };
+      return { board };
+    })
   }
 
   handleBoardChangeUpload(newBoard) {
@@ -373,7 +372,7 @@ export default class App extends Component {
                   scoreUnit={scoreUnit}
                   teams={teams}
                   board={board} 
-                  markQuestionResolved={this.markQuestionResolved}/>
+                  onAnswered={this.markQuestionResolved}/>
               </Route>
               <Route path='/edit'>
                 <Edit

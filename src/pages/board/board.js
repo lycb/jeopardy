@@ -17,7 +17,7 @@ export default class Board extends Component {
           scoreUnit={scoreUnit}
           teams={teams}
           board={board} 
-          markQuestionResolved={this.props.markQuestionResolved}/>
+          onAnswered={this.props.onAnswered}/>
         <ScoreBoard
           scoreUnit={scoreUnit}
           teams={teams}

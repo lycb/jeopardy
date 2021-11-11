@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import './scoreboard.css'
 
-export default class ScoreBoard extends Component{
-  constructor(props) {
-    super(props);
-  }
-
+export default class ScoreBoard extends Component {
+  
   shouldComponentUpdate(nextProps, nextState) {
     for (let i = 0; i < this.props.teams.length; i++) {
       if (this.props.teams[i].points !== nextProps.teams[i].points) {

@@ -37,7 +37,7 @@ export default function GameBoard(props) {
               {board.map((category, categoryIndex) => (
                 <td key={categoryIndex}>
                 {category.map((question, questionIndex) => (
-                  question.point ? <button key={questionIndex} className="question-button" onClick={(event) => handleOnClick(event, question, categoryIndex, questionIndex)}>{question.point}</button> : null
+                  question.point ? <button key={questionIndex} className={`question-button${question.resolved ? "" : "-active"}`} onClick={(event) => handleOnClick(event, question, categoryIndex, questionIndex)}>{question.point}</button> : null
                 ))}
                 {isOpen && <PopUpCard
                   content={questionObj}

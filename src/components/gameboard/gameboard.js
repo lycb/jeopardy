@@ -11,9 +11,10 @@ export default function GameBoard(props) {
   const [questionObj, setQuestionObj] = useState("");
   
   const handleOnClick = (e, question, category, index) => {
-    // return props.onAnswered(category, index);
     setQuestionObj(question);
     togglePopup();
+    props.onAnswered(category, index);
+
   }
 
   const togglePopup = () => {

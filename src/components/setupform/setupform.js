@@ -86,7 +86,7 @@ export default function SetUpForm(props) {
         <input  className="file-upload-input" type="file" id="file-input" onChange={onFileSelect} />
       </div>
       <div className="play-button-wrapper">
-        <img className="play-button" src='playbutton.png' onClick={(event) => handlePlay(event)} />
+        <img alt="play-button" className="play-button" src='playbutton.png' onClick={(event) => handlePlay(event)} />
       </div>
     </div>
   );

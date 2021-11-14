@@ -286,6 +286,7 @@ export default class App extends Component {
     this.handleBoardChangeEdit = this.handleBoardChangeEdit.bind(this);
     this.handleBoardChangeUpload = this.handleBoardChangeUpload.bind(this);
     this.markQuestionResolved = this.markQuestionResolved.bind(this);
+    this.handleTeamPointsChange = this.handleTeamPointsChange.bind(this);
   }
 
   handleScoreUnitChange(event) {
@@ -300,8 +301,9 @@ export default class App extends Component {
       const numTeams = event.target.value;
       if (numTeams > prevState.teams.length) {
         const teams = prevState.teams
-        for (let i = 0; i < numTeams; i++) {
+        for (let i = prevState.teams.length; i < numTeams; i++) {
           teams.push({
+            "id": i,
             "name": "",
             "points": 0
           })
@@ -335,8 +337,15 @@ export default class App extends Component {
     };
   }
 
+  handleTeamPointsChange(index, point) {
+    this.setState(prevState => {
+      const teams = [...prevState.teams];
+      teams[index] = { ...teams[index], "points": prevState.teams[index].points + point };
+      return { teams };
+    });
+  }
+
   markQuestionResolved(category, index) {
-    console.log("category: " + category + " index:  " + index)
     this.setState(prevState => {
       const board = [...prevState.board];
       board[category][index] = { ...board[category][index], "resolved": true };
@@ -372,7 +381,8 @@ export default class App extends Component {
                   scoreUnit={scoreUnit}
                   teams={teams}
                   board={board} 
-                  onAnswered={this.markQuestionResolved}/>
+                  onAnswered={this.markQuestionResolved}
+                  onPointsChange={this.handleTeamPointsChange}/>
               </Route>
               <Route path='/edit'>
                 <Edit

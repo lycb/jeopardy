@@ -22,14 +22,14 @@ export default class ScoreBoard extends Component {
           <thead className="scoreboard-head">
             <tr>
               {teams.map((team, teamIndex) => (
-                team.name? <th>Team {team.name}</th> : <th>Team {teamIndex + 1}</th>
+                team.name? <th key={teamIndex}>Team {team.name}</th> : <th key={teamIndex}>Team {teamIndex + 1}</th>
               ))}
             </tr>
           </thead>
           <tbody className="scoreboard-body">
             <tr>
               {teams.map((team, teamIndex) => (
-                team.points ?<td>{team.points} {unit}</td>:<td>0 {unit}</td>
+                team.points ?<td key={teamIndex}>{team.points} {unit}</td>:<td key={teamIndex}>0 {unit}</td>
               ))}
             </tr>
           </tbody>

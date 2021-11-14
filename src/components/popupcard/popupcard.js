@@ -33,19 +33,19 @@ export default function PopUpCard(props) {
         <div className="question-wrapper">
           {question}
         </div>
-        <button onClick={toggleShowAnswers}>Show Answers</button>
+        <button className="popup-button" onClick={toggleShowAnswers}>Show Answers</button>
         {showAnswers && <div className="answers-wrapper">{answer}</div>}
         <div className="select-team-dropdown">
-          <label>
+          <label className="select-team-label-wrapper">
           Select team: 
-          <select name='team' value={teams.name} onChange={(event) => setTeamIndex(event.target.value)}>
+          <select className="popup-selector" name='team' value={teams.name} onChange={(event) => setTeamIndex(event.target.value)}>
             <option key={-1} value={null}>Select</option>
             {teams.map((team, teamIndex) => (
               team.name ? <option key={teamIndex} value={team.id}>Team {team.name}</option> : <option key={teamIndex} value={team.id}>Team {teamIndex + 1}</option>
             ))}
           </select>
         </label>
-        <button onClick={onConfirm}>Confirm</button>
+        <button className="popup-button" onClick={onConfirm}>Confirm</button>
         </div>
       </div>
     </div>

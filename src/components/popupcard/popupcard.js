@@ -41,7 +41,7 @@ export default function PopUpCard(props) {
           <select name='team' value={teams.name} onChange={(event) => setTeamIndex(event.target.value)}>
             <option key={-1} value={null}>Select</option>
             {teams.map((team, teamIndex) => (
-              <option key={teamIndex} value={team.id}>Team {team.name}</option>
+              team.name ? <option key={teamIndex} value={team.id}>Team {team.name}</option> : <option key={teamIndex} value={team.id}>Team {teamIndex + 1}</option>
             ))}
           </select>
         </label>

@@ -10,10 +10,7 @@ export default class Home extends Component {
 
     return (
       <div>
-      <h1>Jeopardy</h1>
-      <img src="pepedancing.gif" alt="this slowpoke moves"  width="250" />
-      <img src="pepedancing.gif" alt="this slowpoke moves"  width="250" />
-      <img src="pepedancing.gif" alt="this slowpoke moves"  width="250" />
+      <img src="logo.svg" alt="this slowpoke moves"  width="750" />
       <SetUpForm
         scoreUnit={scoreUnit}
         numTeams={numTeams}

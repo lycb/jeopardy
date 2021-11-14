@@ -22,7 +22,7 @@ export default class ScoreBoard extends Component {
           <thead className="scoreboard-head">
             <tr>
               {teams.map((team, teamIndex) => (
-                <th>Team {team.name}</th>
+                team.name? <th>Team {team.name}</th> : <th>Team {teamIndex + 1}</th>
               ))}
             </tr>
           </thead>

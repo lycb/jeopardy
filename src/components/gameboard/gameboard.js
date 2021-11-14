@@ -9,12 +9,14 @@ export default function GameBoard(props) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [questionObj, setQuestionObj] = useState("");
+  const [questionCategory, setCategory] = useState("");
+  const [questionIndex, setIndex] = useState("");
   
   const handleOnClick = (e, question, category, index) => {
-    setQuestionObj(question);
     togglePopup();
-    props.onAnswered(category, index);
-
+    setCategory(category);
+    setIndex(index);
+    setQuestionObj(question);
   }
 
   const togglePopup = () => {
@@ -41,9 +43,12 @@ export default function GameBoard(props) {
                 ))}
                 {isOpen && <PopUpCard
                   content={questionObj}
+                  category={questionCategory}
+                  index={questionIndex}
                   teams={teams}
                   handleClose={togglePopup}
                   onPointsChange={props.onPointsChange}
+                  onAnswered={props.onAnswered}
                 />}
                 </td>
               ))}

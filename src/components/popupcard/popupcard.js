@@ -20,6 +20,7 @@ export default function PopUpCard(props) {
   const onConfirm = (event) => {
     if (event.target.value !== null && event.target.value !== "Select" && selectedTeamIndex !== -1) {
       props.onPointsChange(selectedTeamIndex, point);
+      props.onAnswered(parseInt(props.category, 10), parseInt(props.index,10));
       props.handleClose();
     }
   }

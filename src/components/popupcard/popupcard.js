@@ -20,9 +20,9 @@ export default function PopUpCard(props) {
   const onConfirm = (event) => {
     if (event.target.value !== null && event.target.value !== "Select" && selectedTeamIndex !== -1) {
       props.onPointsChange(selectedTeamIndex, point);
-      props.onAnswered(parseInt(props.category, 10), parseInt(props.index,10));
-      props.handleClose();
     }
+    props.onAnswered(parseInt(props.category, 10), parseInt(props.index,10), selectedTeamIndex);
+    props.handleClose();
   }
 
   return (
@@ -39,7 +39,7 @@ export default function PopUpCard(props) {
           <label className="select-team-label-wrapper">
           Select team: 
           <select className="popup-selector" name='team' value={teams.name} onChange={(event) => setTeamIndex(event.target.value)}>
-            <option key={-1} value={null}>Select</option>
+            <option key={-1} value={-1}>No one</option>
             {teams.map((team, teamIndex) => (
               team.name ? <option key={teamIndex} value={team.id}>Team {team.name}</option> : <option key={teamIndex} value={team.id}>Team {teamIndex + 1}</option>
             ))}

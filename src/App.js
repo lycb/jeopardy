@@ -337,12 +337,23 @@ export default class App extends Component {
     };
   }
 
-  handleTeamPointsChange(index, point) {
-    this.setState(prevState => {
-      const teams = [...prevState.teams];
-      teams[index] = { ...teams[index], "points": prevState.teams[index].points + point };
-      return { teams };
-    });
+  handleTeamPointsChange(correct, incorrect, point) {
+    if (correct >= 0) {
+      this.setState(prevState => {
+        const teams = [...prevState.teams];
+        teams[correct] = { ...teams[correct], "points": prevState.teams[correct].points + point };
+        return { teams };
+      });
+    }
+    if (incorrect.length > 0) {
+      this.setState(prevState => {
+        const teams = [...prevState.teams];
+        for (let i = 0; i < incorrect.length; i++) {
+          teams[incorrect[i]] = { ...teams[incorrect[i]], "points": prevState.teams[incorrect[i]].points - point };
+        }
+        return { teams };
+      });
+    }
   }
 
   markQuestionResolved(category, index) {

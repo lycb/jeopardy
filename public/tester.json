@@ -34,12 +34,6 @@
          "answer":"1a5",
          "resolved":false
       },
-      {
-         "point":600,
-         "question":"1q6",
-         "answer":"1a6",
-         "resolved":false
-      }
    ],
    [
       {
@@ -76,12 +70,6 @@
          "answer":"2a5",
          "resolved":false
       },
-      {
-         "point":600,
-         "question":"2q6",
-         "answer":"2a6",
-         "resolved":false
-      }
    ],
    [
       {
@@ -118,12 +106,6 @@
          "answer":"3a5",
          "resolved":false
       },
-      {
-         "point":600,
-         "question":"3q6",
-         "answer":"3a6",
-         "resolved":false
-      }
    ],
    [
       {
@@ -160,12 +142,6 @@
          "answer":"4a5",
          "resolved":false
       },
-      {
-         "point":600,
-         "question":"4q6",
-         "answer":"4a6",
-         "resolved":false
-      }
    ],
    [
       {
@@ -202,12 +178,6 @@
          "answer":"5a5",
          "resolved":false
       },
-      {
-         "point":600,
-         "question":"5q6",
-         "answer":"5a6",
-         "resolved":false
-      }
    ],
    [
       {
@@ -244,11 +214,5 @@
          "answer":"6a5",
          "resolved":false
       },
-      {
-         "point":600,
-         "question":"6q6",
-         "answer":"6a6",
-         "resolved":false
-      }
    ]
 ]

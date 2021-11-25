@@ -54,7 +54,7 @@ export default class EditBoard extends Component {
                * Loop over an array containing the 5 different question values to build the question-answer inputs
                * pointsIndex+1 accounts for the missing category_name item when you compare this points array to the original board category array
               */}
-              {["100", "200", "300", "400", "500", "600"].map((points, pointsIndex) => (
+              {["100", "200", "300", "400", "500"].map((points, pointsIndex) => (
                 <div className="form-section" key={pointsIndex}>
                   <label>
                     {points + " Points Question:"}

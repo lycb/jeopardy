@@ -55,12 +55,6 @@ export default class App extends Component {
             "answer": "",
             "resolved": false
           },
-          {
-            "point": 600,
-            "question": "",
-            "answer": "",
-            "resolved": false
-          }
         ],
         // Category 2 board [1]
         [
@@ -98,12 +92,6 @@ export default class App extends Component {
             "answer": "",
             "resolved": false
           },
-          {
-            "point": 600,
-            "question": "",
-            "answer": "",
-            "resolved": false
-          }
         ],
         // Category 3 board [2]
         [
@@ -141,12 +129,6 @@ export default class App extends Component {
             "answer": "",
             "resolved": false
           },
-          {
-            "point": 600,
-            "question": "",
-            "answer": "",
-            "resolved": false
-          }
         ],
         // Category 4 board [3]
         [
@@ -184,12 +166,6 @@ export default class App extends Component {
             "answer": "",
             "resolved": false
           },
-          {
-            "point": 600,
-            "question": "",
-            "answer": "",
-            "resolved": false
-          }
         ],
         // Category 5 board [4]
         [
@@ -227,12 +203,6 @@ export default class App extends Component {
             "answer": "",
             "resolved": false
           },
-          {
-            "point": 600,
-            "question": "",
-            "answer": "",
-            "resolved": false
-          }
         ],
         // Category 6 board [5]
         [
@@ -270,12 +240,6 @@ export default class App extends Component {
             "answer": "",
             "resolved": false
           },
-          {
-            "point": 600,
-            "question": "",
-            "answer": "",
-            "resolved": false
-          }
         ],
       ],
     };

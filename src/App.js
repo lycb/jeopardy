@@ -15,6 +15,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
+      "color": "#fff",
       "scoreUnit": '$',
       "numTeams": "0",
       "teams": [],
@@ -253,6 +254,10 @@ export default class App extends Component {
     this.handleTeamPointsChange = this.handleTeamPointsChange.bind(this);
   }
 
+  changeColor = color => {
+    this.setState({ color });
+  };
+
   handleScoreUnitChange(event) {
     this.setState(prevState => {
       let scoreUnit = event.target.value;
@@ -339,15 +344,15 @@ export default class App extends Component {
     const board = this.state.board;
 
     return (
-      <div className='app'>
+      <div className='app' style={{ background: this.state.color }} id="main">
         <header />
         <Router>
           <div className='app-navigation-bar'>
             <nav>
               <ul className='app-navigation-bar-ul'>
-                <li className='app-navigation-bar-li'><Link to='/'>Home</Link></li>
-                <li className='app-navigation-bar-li'><Link to='/board'>Board</Link></li>
-                <li className='app-navigation-bar-li'><Link to='/edit'>Edit</Link></li>
+                <li className='app-navigation-bar-li'><Link to='/' onClick={() => this.changeColor("#fff")}>Home</Link></li>
+                <li className='app-navigation-bar-li'><Link to='/board' onClick={() => this.changeColor("#000a28")}>Board</Link></li>
+                <li className='app-navigation-bar-li'><Link to='/edit' onClick={() => this.changeColor("#fff")}>Edit</Link></li>
               </ul>
             </nav>
             <Switch>

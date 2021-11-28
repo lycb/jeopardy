@@ -29,7 +29,7 @@ export default function GameBoard(props) {
         <thead>
           <tr>
             {board.map((category, categoryIndex) => (
-              category[0].category_name ? <th key={categoryIndex}>{category[0].category_name}</th> : <th key={categoryIndex}>Category {categoryIndex+1}</th>
+              category[0].category_name ? <th key={categoryIndex}  className="category-name">{category[0].category_name}</th> : <th key={categoryIndex}  className="category-name">Category {categoryIndex+1}</th>
             ))}
           </tr>
         </thead>

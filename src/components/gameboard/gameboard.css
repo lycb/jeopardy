@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
 .board-wrapper {
 	margin: auto;
   width: 50%;
   padding: 10px;
+  height:100vh;
 }
 
 .question-button {
@@ -11,10 +14,22 @@
 	background-color: gray;
 }
 
-.question-button-active {
-	padding: 20px 50px 20px 50px;
+.question-button-active  {
+	padding: 20px 40px 20px 40px;
 	border-radius: 12px;
 	border: none;
-	background-color: green;
-	color: white;
+	background-color: #001E7C;
+	color: #ff9400;
+	font-family: 'Oswald', sans-serif;
+	font-size: 30px;
+}
+
+.category-name {
+	padding: 10px;
+	border-radius: 12px;
+	border: none;
+	background-color: #001E7C;
+	color: #ff9400;
+	font-family: 'Oswald', sans-serif;
+	font-size: 20px;
 }
